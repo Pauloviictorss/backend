@@ -1,7 +1,10 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
+import Curso from 'App/Models/Curso'
 
 export default class extends BaseSeeder {
   public async run () {
-    // Write your database queries inside the run method
+    await Curso.createMany([
+      {nome: 'ADS', duracao: 5, modalidade: 'P'},
+    ])
   }
 }
