@@ -7,6 +7,9 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
+      table.date('data').notNullable()
+      table.string('conteudo').notNullable()
+      table.integer('turma_id').unsigned().references('id').inTable('turmas')
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

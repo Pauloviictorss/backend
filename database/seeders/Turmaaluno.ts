@@ -1,7 +1,10 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
+import Turmaaluno from 'App/Models/Turmaaluno'
 
 export default class extends BaseSeeder {
   public async run () {
-    // Write your database queries inside the run method
+    await Turmaaluno.createMany([
+      {alunoId: 1, turmaId: 1},
+    ])
   }
 }

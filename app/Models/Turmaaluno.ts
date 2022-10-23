@@ -5,6 +5,12 @@ export default class Turmaaluno extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column()
+  public turmaId: number
+
+  @column()
+  public alunoId: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
