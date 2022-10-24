@@ -7,7 +7,8 @@ export default class TurmaalunosController {
 
         const turmaaluno = Turmaaluno.query()
                              .select(['id', 'turmaId', 'alunoId'])
-                             //.preload('album')
+                             .preload('aluno')
+                             .preload('turma')
 
         if(turmaId){
             turmaaluno.where('turmaId', turmaId)

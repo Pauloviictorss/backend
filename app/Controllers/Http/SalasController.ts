@@ -7,7 +7,7 @@ export default class SalasController {
 
         const sala = Sala.query()
                              .select(['id', 'nome', 'capacidade', 'tipo'])
-                             //.preload('album')
+                             .preload('turmas')
                              
         if(nome){
             sala.where('nome', nome)

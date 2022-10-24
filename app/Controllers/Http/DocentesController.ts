@@ -7,7 +7,7 @@ export default class DocentesController {
 
         const docente = Docente.query()
                              .select(['id', 'nome', 'cpf', 'matricula', 'email', 'telefone'])
-                             //.preload('album')
+                             .preload('turmas')
 
         if(nome){
             docente.where('nome', nome)

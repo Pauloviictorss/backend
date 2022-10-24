@@ -7,7 +7,8 @@ export default class AlunosController {
 
         const aluno = Aluno.query()
                              .select(['id', 'nome', 'cpf', 'matricula', 'email', 'telefone'])
-                             //.preload('album')
+                             .preload('turmas')
+                             .preload('chamadas')
 
         if(nome){
             aluno.where('nome', nome)

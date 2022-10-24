@@ -7,7 +7,8 @@ export default class AulasController {
 
         const aula = Aula.query()
                              .select(['id', 'data', 'conteudo', 'turmaId'])
-                             //.preload('album')
+                             .preload('chamadas')
+                             .preload('turma')
                            
         if(data){
             aula.where('data', data)

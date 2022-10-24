@@ -7,7 +7,11 @@ export default class TurmasController {
 
         const turma = Turma.query()
                              .select(['id', 'nome', 'docenteId', 'semestreId', 'disciplinaId', 'salaId', 'turno'])
-                             //.preload('album')
+                             .preload('turma_alunos')
+                             .preload('docente')
+                             .preload('semestre')
+                             .preload('disciplina')
+                             .preload('sala')
                              
         if(nome){
             turma.where('nome', nome)

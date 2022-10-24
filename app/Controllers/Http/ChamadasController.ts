@@ -7,7 +7,8 @@ export default class ChamadasController {
 
         const chamada = Chamada.query()
                              .select(['id', 'aulaId', 'alunoId', 'presenca'])
-                             //.preload('album')
+                             .preload('aula')
+                             .preload('aluno')
                              
         if(aulaId){
             chamada.where('aulaId', aulaId)

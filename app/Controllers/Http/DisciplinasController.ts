@@ -7,7 +7,8 @@ export default class DisciplinasController {
 
         const disciplina = Disciplina.query()
                              .select(['id', 'nome', 'cursoId'])
-                             //.preload('album')
+                             .preload('curso')
+                             .preload('turmas')
 
         if(nome){
             disciplina.where('nome', nome)

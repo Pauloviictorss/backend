@@ -7,7 +7,7 @@ export default class SemestresController {
 
         const semestre = Semestre.query()
                              .select(['id', 'nome', 'dataInicio', 'dataFim'])
-                             //.preload('album')
+                             .preload('turmas')
                              
         if(nome){
             semestre.where('nome', nome)

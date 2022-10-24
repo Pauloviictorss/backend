@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import Chamada from './Chamada'
+import Turma from './Turma'
 
 export default class Aula extends BaseModel {
   @column({ isPrimary: true })
@@ -19,4 +21,10 @@ export default class Aula extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @hasMany(() => Chamada)
+  public chamadas: HasMany<typeof Chamada>
+
+  @belongsTo(() => Turma)
+  public turma: BelongsTo<typeof Turma>
 }

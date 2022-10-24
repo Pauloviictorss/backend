@@ -7,7 +7,7 @@ export default class CursosController {
 
         const curso = Curso.query()
                              .select(['id', 'nome', 'duracao', 'modalidade'])
-                             //.preload('album')
+                             .preload('disciplinas')
                              
         if(nome){
             curso.where('nome', nome)
