@@ -1,4 +1,5 @@
 import Turma from "App/Models/Turma"
+import TurmaValidator from "App/Validators/TurmaValidator"
 
 export default class TurmasController {
     index({request}){
@@ -7,11 +8,12 @@ export default class TurmasController {
 
         const turma = Turma.query()
                              .select(['id', 'nome', 'docenteId', 'semestreId', 'disciplinaId', 'salaId', 'turno'])
-                             .preload('turma_alunos')
                              .preload('docente')
                              .preload('semestre')
                              .preload('disciplina')
                              .preload('sala')
+                             .preload('alunos')
+                             .preload('aulas')
                              
         if(nome){
             turma.where('nome', nome)
@@ -39,9 +41,8 @@ export default class TurmasController {
 
         return turma
     }
-    store({request}){
-        const dados = request.only(['nome', 'docenteId', 'semestreId', 'disciplinaId', 'salaId', 'turno'])
-
+    async store({request}){
+        const dados = await request.validate(TurmaValidator)
         return Turma.create(dados)
     }
     show({request}){

@@ -22,9 +22,9 @@ export default class Chamada extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @belongsTo(() => Aula)
-  public aula: BelongsTo<typeof Aula>
-
   @belongsTo(() => Aluno)
   public aluno: BelongsTo<typeof Aluno>
+
+  @belongsTo(() => Aula)
+  public aula: BelongsTo<typeof Aula>
 }

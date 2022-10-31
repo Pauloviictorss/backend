@@ -1,4 +1,5 @@
 import Sala from "App/Models/Sala"
+import SalaValidator from "App/Validators/SalaValidator"
 
 export default class SalasController {
     index({request}){
@@ -19,9 +20,8 @@ export default class SalasController {
 
         return sala
     }
-    store({request}){
-        const dados = request.only(['nome', 'capacidade', 'tipo'])
-
+    async store({request}){
+        const dados = await request.validate(SalaValidator)
         return Sala.create(dados)
     }
     show({request}){

@@ -22,9 +22,9 @@ export default class Aula extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @hasMany(() => Chamada)
-  public chamadas: HasMany<typeof Chamada>
-
   @belongsTo(() => Turma)
   public turma: BelongsTo<typeof Turma>
+
+  @hasMany(() => Chamada)
+  public chamadas: HasMany<typeof Chamada>
 }

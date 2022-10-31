@@ -1,4 +1,5 @@
 import Turmaaluno from "App/Models/Turmaaluno"
+import TurmaAlunoValidator from "App/Validators/TurmaAlunoValidator"
 
 export default class TurmaalunosController {
     index({request}){
@@ -7,8 +8,6 @@ export default class TurmaalunosController {
 
         const turmaaluno = Turmaaluno.query()
                              .select(['id', 'turmaId', 'alunoId'])
-                             .preload('aluno')
-                             .preload('turma')
 
         if(turmaId){
             turmaaluno.where('turmaId', turmaId)
@@ -20,9 +19,8 @@ export default class TurmaalunosController {
 
         return turmaaluno
     }
-    store({request}){
-        const dados = request.only(['turmaId', 'alunoId'])
-
+    async store({request}){
+        const dados = await request.validate(TurmaAlunoValidator)
         return Turmaaluno.create(dados)
     }
     show({request}){

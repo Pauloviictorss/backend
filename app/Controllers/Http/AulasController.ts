@@ -1,4 +1,5 @@
 import Aula from "App/Models/Aula"
+import AulaValidator from "App/Validators/AulaValidator"
 
 export default class AulasController {
     index({request}){
@@ -20,9 +21,8 @@ export default class AulasController {
 
         return aula
     }
-    store({request}){
-        const dados = request.only(['data', 'conteudo', 'turmaId'])
-
+    async store({request}){
+        const dados = await request.validate(AulaValidator)
         return Aula.create(dados)
     }
     show({request}){

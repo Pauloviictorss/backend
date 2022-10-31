@@ -1,4 +1,5 @@
 import Docente from "App/Models/Docente"
+import DocenteValidator from "App/Validators/DocenteValidator"
 
 export default class DocentesController {
     index({request}){
@@ -27,9 +28,8 @@ export default class DocentesController {
 
         return docente
     }
-    store({request}){
-        const dados = request.only(['id', 'nome', 'cpf', 'matricula', 'salario', 'email', 'telefone', 'cep', 'logradouro', 'complemento', 'numero', 'bairro'])
-
+    async store({request}){
+        const dados = await request.validate(DocenteValidator)
         return Docente.create(dados)
     }
     show({request}){

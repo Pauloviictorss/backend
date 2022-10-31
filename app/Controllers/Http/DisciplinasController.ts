@@ -1,4 +1,5 @@
 import Disciplina from "App/Models/Disciplina"
+import DisciplinaValidator from "App/Validators/DisciplinaValidator"
 
 export default class DisciplinasController {
     index({request}){
@@ -20,9 +21,8 @@ export default class DisciplinasController {
 
         return disciplina
     }
-    store({request}){
-        const dados = request.only(['nome', 'cursoId'])
-
+    async store({request}){
+        const dados = await request.validate(DisciplinaValidator)
         return Disciplina.create(dados)
     }
     show({request}){

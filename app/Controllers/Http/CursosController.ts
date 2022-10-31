@@ -1,4 +1,5 @@
 import Curso from "App/Models/Curso"
+import CursoValidator from "App/Validators/CursoValidator"
 
 export default class CursosController {
     index({request}){
@@ -19,9 +20,8 @@ export default class CursosController {
 
         return curso
     }
-    store({request}){
-        const dados = request.only(['id', 'nome', 'duracao', 'modalidade'])
-
+    async store({request}){
+        const dados = await request.validate(CursoValidator)
         return Curso.create(dados)
     }
     show({request}){
